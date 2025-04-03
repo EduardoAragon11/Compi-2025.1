@@ -7,8 +7,8 @@ using namespace std;
 
 class Token {
 public:
-    enum Type { LPAREN=0, RPAREN, PLUS, MINUS, MULT, DIV, POW, NUM, ERR, END, ID , FLOAT, LOG, EXP, COS};
-    static const char* token_names[15];
+    enum Type { LPAREN=0, RPAREN, PLUS, MINUS, MULT, DIV, POW, NUM, ERR, END, ID , FLOAT, LOG, EXP, COS, FACT};
+    static const char* token_names[16];
     Type type;
     string lexema;
     Token(Type);
@@ -16,7 +16,7 @@ public:
     Token(Type, const string source);
 };
 
-const char* Token::token_names[15] = { "LPAREN" , "RPAREN", "PLUS", "MINUS", "MULT", "DIV", "POW", "NUM", "ERR", "END","ID", "FLOAT", "LOG", "EXP", "COS" };
+const char* Token::token_names[16] = { "LPAREN" , "RPAREN", "PLUS", "MINUS", "MULT", "DIV", "POW", "NUM", "ERR", "END","ID", "FLOAT", "LOG", "EXP", "COS" , "FACT"};
 
 Token::Token(Type type):type(type) { lexema = ""; }
 
@@ -63,8 +63,12 @@ Token* Scanner::nextToken() {
     startLexema();
     while (1) {
         switch (state) {
-            case 0: c = nextChar();
-                if (c == ' ') { startLexema(); state = 0; }
+            case 0:
+                c = nextChar();
+                if (c == ' ') {
+                    startLexema();
+                    state = 0;
+                }
                 else if (c == '\0') return new Token(Token::END);
                 else if (c == '(') state = 1;
                 else if (c == ')') state = 2;
@@ -72,49 +76,61 @@ Token* Scanner::nextToken() {
                 else if (c == '-') state = 4;
                 else if (c == '*') state = 5;
                 else if (c == '/') state = 6;
+                else if (c == '!') state = 15;
                 else if (isdigit(c)) {
                     state = 8;
-                }
-                else if(isalpha(c)) state =11;
+                } else if (isalpha(c)) state = 11;
                 else return new Token(Token::ERR, c);
                 break;
-            case 1: return new Token(Token::LPAREN);
-            case 2: return new Token(Token::RPAREN);
-            case 3: return new Token(Token::PLUS,c);
-            case 4: return new Token(Token::MINUS,c);
-            case 5: return new Token(Token::MULT,c);
-            case 6: return new Token(Token::DIV,c);
-            case 7: return new Token(Token::POW,c);
+            case 1:
+                return new Token(Token::LPAREN);
+            case 2:
+                return new Token(Token::RPAREN);
+            case 3:
+                return new Token(Token::PLUS, c);
+            case 4:
+                return new Token(Token::MINUS, c);
+            case 5:
+                return new Token(Token::MULT, c);
+            case 6:
+                return new Token(Token::DIV, c);
+            case 7:
+                return new Token(Token::POW, c);
             case 8:
                 c = nextChar();
                 if (isdigit(c)) state = 8;
-                else if(c == '.') state = 13;
+                else if (c == '.') state = 13;
                 else state = 9; // roll back
                 break;
             case 9:
                 rollBack();
                 return new Token(Token::NUM, getLexema());
-            case 10: current--;
-                return new Token(Token::MULT,getLexema()); // pow
-            case 11: c = nextChar();
-                if(isalpha(c) or isdigit(c)){
+            case 10:
+                current--;
+                return new Token(Token::MULT, getLexema()); // pow
+            case 11:
+                c = nextChar();
+                if (isalpha(c) or isdigit(c)) {
                     state = 11;
-                }
-                else{
+                } else {
                     state = 12; // ID
                 }
                 break;
-            case 12: rollBack();
-                if(getLexema() == "log") return new Token(Token::LOG, getLexema());
-                else if(getLexema() == "exp") return new Token(Token::EXP, getLexema());
-                else if(getLexema() == "cos") return new Token(Token::COS, getLexema());
+            case 12:
+                rollBack();
+                if (getLexema() == "log") return new Token(Token::LOG, getLexema());
+                else if (getLexema() == "exp") return new Token(Token::EXP, getLexema());
+                else if (getLexema() == "cos") return new Token(Token::COS, getLexema());
                 else return new Token(Token::ID, getLexema()); // ID
-            case 13 : c = nextChar();
-                if(isdigit(c))  state = 13;
+            case 13 :
+                c = nextChar();
+                if (isdigit(c)) state = 13;
                 else state = 14;
                 break;
-            case 14: rollBack();
+            case 14:
+                rollBack();
                 return new Token(Token::FLOAT, getLexema());
+            case 15: return new Token(Token::FACT, getLexema());
 
         }
     }

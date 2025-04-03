@@ -76,7 +76,7 @@ Token* Scanner::nextToken() {
                 else if (c == '-') state = 4;
                 else if (c == '*') state = 5;
                 else if (c == '/') state = 6;
-                else if (c == '!') state = 15;
+                else if (c == '!') state = 15; // factorial
                 else if (isdigit(c)) {
                     state = 8;
                 } else if (isalpha(c)) state = 11;
@@ -90,12 +90,15 @@ Token* Scanner::nextToken() {
                 return new Token(Token::PLUS, c);
             case 4:
                 return new Token(Token::MINUS, c);
-            case 5:
-                return new Token(Token::MULT, c);
+            case 5: c = nextChar();
+                if(c == '*') state =7;
+                else state = 10;
+                break;
+
             case 6:
                 return new Token(Token::DIV, c);
             case 7:
-                return new Token(Token::POW, c);
+                return new Token(Token::POW, getLexema());
             case 8:
                 c = nextChar();
                 if (isdigit(c)) state = 8;
@@ -130,7 +133,9 @@ Token* Scanner::nextToken() {
             case 14:
                 rollBack();
                 return new Token(Token::FLOAT, getLexema());
+            // nuevas caracteristicas
             case 15: return new Token(Token::FACT, getLexema());
+
 
         }
     }

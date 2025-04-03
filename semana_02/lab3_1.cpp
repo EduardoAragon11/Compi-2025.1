@@ -85,7 +85,10 @@ Token* Scanner::nextToken() {
                 if (c == '*') state = 7;
                 else state = 10;
                 break;
-            case 6: return new Token(Token::DIV,c);
+            case 6: c = nextChar();
+                if (c == '/') state = 15;
+                else state = 16;
+                break;
             case 7: return new Token(Token::POW,getLexema());
             case 8: c = nextChar();
                 if (isdigit(c)) state = 8;
@@ -103,6 +106,12 @@ Token* Scanner::nextToken() {
             case 13: return new Token(Token::COMP, getLexema());
             case 14: current--;
                 return new Token(Token::EQUAL, getLexema());
+            case 15: c = nextChar();
+                if(c == '\n') state = 11;
+                else if(c == '\0') return new Token(Token::END);
+                break;
+            case 16: current--;
+                return new Token(Token::DIV,getLexema());
         }
     }
 

@@ -1,0 +1,1 @@
+x = 100; y = 200; z = x + y; if (z == (x+y)) then print(1) else print(0) endif

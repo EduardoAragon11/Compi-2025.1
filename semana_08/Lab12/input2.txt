@@ -1,0 +1,3 @@
+var string z,y;
+var int x;
+x = 2

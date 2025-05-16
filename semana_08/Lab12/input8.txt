@@ -1,0 +1,8 @@
+var int a;
+var bool b;
+
+a = 1;
+b = false;
+
+print(a);
+print(b)

@@ -1,0 +1,5 @@
+var int x;
+
+while 5 do
+print(1)
+endwhile

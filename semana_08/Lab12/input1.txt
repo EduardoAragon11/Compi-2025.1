@@ -1,0 +1,18 @@
+var int x, y;
+
+x = 10;
+y = 5;
+
+if 5 < x then
+    var int x;
+    x = 5;
+    y = 10;
+    if (x + y < 10) then
+        print(x + y)
+    else
+        y = 1;
+        print(x - y)
+    endif
+endif;
+
+print(x)

@@ -1,0 +1,13 @@
+var int a,b;
+
+fun int fact(int n)
+    if(n==0) then
+        return(1)
+    endif;
+    return(5)
+endfun
+
+fun void main()
+    print(fact(5));
+    return(0)
+endfun

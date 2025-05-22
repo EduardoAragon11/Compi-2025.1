@@ -1,0 +1,12 @@
+var int a,b;
+fun int suma(int x,int y)
+    var int sum; 
+    sum = x+y;
+    return(sum)
+endfun
+fun void main()
+    a = 5;
+    b = 6;
+    print(suma(a,b));
+    return(0)
+endfun

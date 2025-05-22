@@ -1,0 +1,7 @@
+var int a,b;
+fun void main()
+    a = 100;
+    b = 6;
+    print(a+b);
+    return(0)
+endfun

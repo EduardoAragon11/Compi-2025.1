@@ -1,13 +1,14 @@
 var int a,b;
 
 fun int fact(int n)
-    if(n==0) then
+    if(1 == n) then
         return(1)
-    endif;
-    return(5)
+    else
+        return(fact(n-1) * n)
+    endif
 endfun
 
 fun void main()
-    print(fact(5));
+    print(fact(7));
     return(0)
 endfun

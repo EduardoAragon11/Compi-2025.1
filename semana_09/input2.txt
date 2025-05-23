@@ -1,16 +1,14 @@
 var int a,b;
 
 fun int fibo(int n)
-    if(n == 1) then
-        return(1)
-    endif;
-    if(n == 0) then
-        return(0)
-    endif;
-    return (fibo(n-1) + fibo(n-2))
+    if(n < 2) then
+        return(n)
+    else 
+        return (fibo(n-1) + fibo(n-2))
+    endif
 endfun
 
 fun void main()
-    print(fibo(5));
+    print(fibo(8));
     return(0)
 endfun

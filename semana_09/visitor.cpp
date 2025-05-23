@@ -372,8 +372,9 @@ int EVALVisitor::visit(FCallExp* f) {
     auto it_tipos = func->tipos.begin();
 
     while (it != f->argumentos.end() && it2 != func->parametros.end() && it_tipos != func->tipos.end()){
-        env.add_var(*(it2), (*(it))->accept(this) , *(it_tipos));
-        env.update(*(it2),(*(it))->accept(this));
+        auto x = (*(it))->accept(this);
+        env.add_var(*(it2), x, *(it_tipos));
+        env.update(*(it2),x);
         it++;
         it2++;
         it_tipos++;
@@ -381,10 +382,7 @@ int EVALVisitor::visit(FCallExp* f) {
 
     func->cuerpo->accept(this);
     env.remove_level();
-
     return retval;
-
-
 }
 void EVALVisitor::visit(FunDec* e) {
     fdecs[e->nombre]= e;

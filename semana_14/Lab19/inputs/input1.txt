@@ -1,0 +1,8 @@
+fun void mostrar()
+    print(10)
+endfun
+
+fun int main()
+    mostrar();
+    return(0)
+endfun

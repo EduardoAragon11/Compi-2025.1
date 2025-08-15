@@ -146,7 +146,7 @@ int main(int argc, const char* argv[]) {
         cout << "Incorrect number of arguments" << endl;
         exit(1);
     }
-    
+
     ifstream file(argv[1]);
     string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>()));
     const char* content_ptr = content.c_str();

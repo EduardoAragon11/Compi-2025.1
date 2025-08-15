@@ -1,0 +1,8 @@
+fun int main()
+    var int i;
+    i=0;
+    while true do
+        break
+    endwhile;
+    return(0)
+endfun

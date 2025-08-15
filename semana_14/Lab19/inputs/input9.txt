@@ -1,0 +1,6 @@
+fun int main()
+    while false do
+        break
+    endwhile;
+    return(0)
+endfun

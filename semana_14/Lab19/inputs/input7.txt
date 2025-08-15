@@ -1,0 +1,10 @@
+fun int main()
+    var int x;
+    x = 0;
+    while true do
+        if x < 1 then
+            break;
+        endif
+    endwhile;
+    return(0)
+endfun

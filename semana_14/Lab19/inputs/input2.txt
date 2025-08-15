@@ -1,0 +1,8 @@
+fun void terminar()
+    return()
+endfun
+
+fun int main()
+    terminar();
+    return(0)
+endfun

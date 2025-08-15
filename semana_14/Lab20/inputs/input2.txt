@@ -1,0 +1,6 @@
+fun void main()
+    var dec i;
+    i = 6/2+1;
+    print(i);
+    return (0)
+endfun

@@ -1,0 +1,9 @@
+var int i;
+for(i = 0, i < 5, i=i+1)
+    var int j;
+    j = i;
+    while j < 5 do
+        print(j);
+        j = j + 1
+   endwhile
+endfor

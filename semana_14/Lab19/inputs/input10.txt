@@ -1,0 +1,14 @@
+fun int main()
+    var int i;
+    i = 0;
+    while true do
+        if i == 0 then
+            i = i + 1;
+            break
+        endif;
+        if i == 1 then
+            break
+        endif
+    endwhile;
+    return(0)
+endfun

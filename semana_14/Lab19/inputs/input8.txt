@@ -1,0 +1,7 @@
+fun int main()
+    while true do
+        print(3);
+        break
+    endwhile;
+    return(0)
+endfun

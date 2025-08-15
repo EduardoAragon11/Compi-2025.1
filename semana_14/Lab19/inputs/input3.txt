@@ -1,0 +1,10 @@
+fun void mensaje()
+    if true then
+        print(2)
+    endif
+endfun
+
+fun int main()
+    mensaje();
+    return(0)
+endfun

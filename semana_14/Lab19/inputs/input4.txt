@@ -1,0 +1,16 @@
+fun void uno()
+    print(1)
+endfun
+
+fun void dos()
+    print(2);
+    print(3)
+endfun
+
+fun int main()
+
+    print(20);
+    uno();
+    print(21);
+    return(0)
+endfun
